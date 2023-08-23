@@ -1,7 +1,16 @@
-<h1>Homepage</h1>
+<div class="container">
+  <div class="banner">
+    <h1>Books</h1>
+  </div>
 
-<ul>
-  <% @books.each do |book| %>
-  <li><%= link_to book.title, book %></li>
-  <% end %>
-</ul>
+  <div class="card-container d-flex w-100% text-center col-9">
+    <% @books.each do |book| %>
+      <div class="card text-decoration rounded col-3">
+        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="book">
+        <%= link_to book.title, book %>
+      </div>
+    <% end %>
+  </div>
+
+  <p><%= link_to "Add new book", new_book_path %></p>
+</div>
