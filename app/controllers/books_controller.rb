@@ -41,17 +41,6 @@ class BooksController < ApplicationController
     redirect_to books_path, status: :see_other
   end
 
-  def create
-    @book = Book.find(params[:user_id])
-    @book = @user.books.new(book_params)
-
-    if @book.save
-      redirect_to @user, notice: "Your book was successfully created!"
-    else
-      render @user
-    end
-  end
-  
   private
 
   def set_book
