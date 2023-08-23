@@ -1,14 +1,13 @@
 class BooksController < ApplicationController
-
-  skip_before_action :authenticate_user!
-  before_action :set_book only :show
+  # skip_before_action :authenticate_user!
+  before_action :set_book, only: :show
 
   def new
     @books = Book.new
   end
 
   def show
-    @books = Books.all
+    @rental = Rental.new
   end
   
   def update
@@ -28,18 +27,19 @@ class BooksController < ApplicationController
   def create
     @book = Book.find(params[:user_id])
     @book = @user.books.new(book_params)
-      if @book.save
-        redirect_to @user, notice: "Your book was successfully created!"
-      else
-        render @user
-      end
-    end
-  
-private
 
-    def set_book
-      @book= Book.find(params[:id])
+    if @book.save
+      redirect_to @user, notice: "Your book was successfully created!"
+    else
+      render @user
     end
+  end
+  
+  private
+
+  def set_book
+    @book= Book.find(params[:id])
+  end
 
   def book_params
     params.require(:book).permit(:title, :author, :year, :overview, :genre)

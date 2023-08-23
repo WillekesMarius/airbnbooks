@@ -1,6 +1,7 @@
 class RentalsController < ApplicationController
   def create
-    @book = Book.find(params[:book_id])
+    # raise
+    @book = Book.find(params[:id])
     @rental = Rental.new(rental_params)
     @rental.user = current_user
     @rental.book = @book
@@ -13,6 +14,8 @@ class RentalsController < ApplicationController
         render 'books/show'
       end
   end
+
+  #def return ## need to be able to return the rented book
   
   private
 

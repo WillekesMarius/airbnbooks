@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root to: 'books#index'
+
   devise_for :users
-  root to: "pages#home"
+  resources :books do
+    resources :rentals, only: %i[new create]
+  end
 end
