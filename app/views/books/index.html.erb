@@ -3,11 +3,13 @@
     <h1>Books</h1>
   </div>
 
-  <div class="card-container d-flex w-100% text-center col-9">
+  <div class="card-container w-80 col-9">
     <% @books.each do |book| %>
-      <div class="card text-decoration rounded col-3">
+      <div class="card col-3">
         <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="book">
-        <%= link_to book.title, book %>
+        <div class="card-img-overlay">
+          <h5><%= link_to book.title, book %></h5>
+        </div>
       </div>
     <% end %>
   </div>
