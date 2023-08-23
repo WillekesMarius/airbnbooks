@@ -1,18 +1,32 @@
 class BooksController < ApplicationController
   # skip_before_action :authenticate_user!
-  before_action :set_book, only: :show
+  before_action :set_book, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: :index
+
+  def index
+    @books = Book.all
+  end
 
   def new
-    @books = Book.new
+    @book = Book.new
   end
 
   def show
     @rental = Rental.new
   end
-  
-  def update
-    @book = Book.find(params[:id])
 
+  def create
+    @book = Book.new(book_params)
+    if @book.save
+      redirect_to @user, notice: "Your book was successfully created!"
+    else
+      render @user
+    end
+  end
+
+  def edit; end
+
+  def update
     if @book.update(book_params)
       redirect_to @book, notice: "Your book has been succesfully updated!"
     else
@@ -20,8 +34,9 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
-    @book = Book.find(params[:id])
+  def destroy
+    @book.destroy
+    redirect_to books_path, status: :see_other
   end
 
   def create
@@ -38,7 +53,7 @@ class BooksController < ApplicationController
   private
 
   def set_book
-    @book= Book.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def book_params
