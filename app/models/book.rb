@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
-  belongs_to :user
+  belongs_to :git 
   has_many :rentals
 
   validates :title, presence: true

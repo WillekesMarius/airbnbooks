@@ -27,7 +27,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-       redirect_to @book, notice: "Your book has been succesfully updated!"
+      redirect_to @book, notice: "Your book has been succesfully updated!"
     else
       render :edit
     end
