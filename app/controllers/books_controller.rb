@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :set_book, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: :index
 
   def index
     @books = Book.all
@@ -8,6 +9,10 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+  end
+
+  def show
+    @rental = Rental.new
   end
 
   def create
@@ -20,8 +25,6 @@ class BooksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
-  def show; end
 
   def edit; end
 
@@ -38,6 +41,17 @@ class BooksController < ApplicationController
     redirect_to books_path, status: :see_other
   end
 
+  def create
+    @book = Book.find(params[:user_id])
+    @book = @user.books.new(book_params)
+
+    if @book.save
+      redirect_to @user, notice: "Your book was successfully created!"
+    else
+      render @user
+    end
+  end
+  
   private
 
   def set_book

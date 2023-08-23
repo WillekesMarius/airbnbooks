@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :books, only: %i[index show new create] do
     resources :rentals, only: %i[new create]
   end
+
+  resources :dashboards, only: %i[index]
+  resources :profiles, only: %i[index]
 end

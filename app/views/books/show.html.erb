@@ -1,17 +1,22 @@
-<div class="position-relative>
+<div class="container my-5">
+  <div class="position-relative">
+  </div> 
 
-<=% image_tag class= "book-cover"%></div> #add place for img later on#
-<%=end%>
-<div>
-  <h1 class="book-start"><%= @book.title%></h1>
-  <h2 class="book-start"><%= @book.author%></h2>
-  <p class="book-start"><%= @book.year%></p>
-  <p class="book-start"><%= @book.overview%></p>
-  <p class="book-start"><%= @book.genre%></p>
+  <div>
+    <h1 class="book-start-one"><%= @book.title %></h1>
+    <h2 class="book-start-two"><%= @book.author %></h2>
+    <p class="book-start-three"><%= @book.year %></p>
+    <p class="book-start-four">Overview: <%= @book.overview %></p>
+    <p class="book-start-five">Genre: <%= @book.genre %></p>
+  </div>
+
+  <div class="formstyle">
+    <%= simple_form_for [@book, @rental] do |f| %>
+      <%= f.input :start_date, label: "Start", placeholder: "From", wrapper_htlm: { class: "inline_field_wrapper"} %>
+      <%= f.input :end_date, label: "End", placeholder: "To", wrapper_htlm: { class: "inline_field_wrapper"} %>
+      <%= f.submit "Rent Me!", class: "btn btn-primary", onclick: "Congratulations! Your rental was successful!"%>
+    <% end %>
+  </div>
+
+  <%= link_to 'Back', root_path, class: 'btn btn-dark' %>
 </div>
-<div class="Rent">
-  <div class="container text-center">
-  <h1 class="text-center"><strong>Rent Me!</strong></h1>
-<%= link_to "Request to Rent", new_book_rental_path(@book), class: "books-show-buttons" %>
-
-<p><%= link_to 'Back', :back, {class: "non-button-link"} %><p>

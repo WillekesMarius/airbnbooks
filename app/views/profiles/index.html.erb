@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Profile</h1>
+
+  <div class="profile-container d-flex">
+    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "w-10 rounded", alt: "avatar" %>
+
+    <div class="details container w-40 mt-10">
+      <p><strong>First name: </strong><%= current_user.first_name %></p>
+      <p><strong>Last name: </strong><%= current_user.last_name %></p>
+      <p><strong>Email: </strong><%= current_user.email %></p>
+    </div>
+  </div>
+
+  <p><%= link_to "Edit profile", edit_user_registration_path %></p>
+</div>
