@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  # before_action :authenticate_user!, only: %i[new create]
   before_action :set_book, only: %i[show edit update destroy]
   skip_before_action :authenticate_user!, only: :index
 
@@ -18,9 +18,8 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user = current_user
-
     if @book.save
-      redirect_to book_path(@book), notice: "Your book was successfully created!"
+      redirect_to dashboards_path(current_user), notice: "Your book was successfully created!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +29,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-       redirect_to @book, notice: "Your book has been succesfully updated!"
+      redirect_to dashboards_path(current_user), notice: "Your book has been succesfully updated!"
     else
       render :edit
     end
@@ -38,7 +37,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to books_path, status: :see_other
+    redirect_to dashboards_path(current_user), status: :see_other
   end
 
   private

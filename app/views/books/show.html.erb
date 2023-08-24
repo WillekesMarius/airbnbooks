@@ -13,7 +13,7 @@
     <%= simple_form_for [@book, @rental] do |f| %>
       <%= f.input :start_date, label: "Start", placeholder: "From", wrapper_htlm: { class: "inline_field_wrapper"} %>
       <%= f.input :end_date, label: "End", placeholder: "To", wrapper_htlm: { class: "inline_field_wrapper"} %>
-      <%= f.submit "Rent Me!", class: "btn btn-primary", onclick: "Congratulations! Your rental was successful!"%>
+      <%= f.submit "Rent Me!", class: "text-decoration-none btn btn-outline-primary" , onclick: "Congratulations! Your rental was successful!"%>
     <% end %>
   </div>
 
