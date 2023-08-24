@@ -9,6 +9,27 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <div class="row justify-content-center">
+      <%= form_with url: root_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Title, Author, Genre, Keyword"
+          %>
+        <%= button_tag class: "btn btn-success" do %>
+          <i class='fas fa-search'></i>
+        <% end %>
+      <% end %>
+      <%# <div class="input-group">
+        <div class="form-outline">
+          <input id="search-input" type="search" class="form-control", placeholder= "Title, Author, Genre, Keyword">
+        </div>
+        <button id="search-button" type="button" class="btn btn-success" >
+          <i class="fas fa-search"></i>
+        </button>
+      </div> %>
+    </div>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
