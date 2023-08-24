@@ -1,0 +1,17 @@
+<div class="container py-5">
+   <div class="row">
+      <div class="col-12 col-md-6 offset-lg-3">
+         <div class="bg-white rounded p-3 shadow">
+            <h4>Update book</h4>
+            <%= simple_form_for @book do |f| %>
+              <%= f.input :title %>
+              <%= f.input :year %>
+              <%= f.input :author %>
+              <%= f.input :overview %>
+              <%= f.input :genre %>
+              <%= f.submit class: 'btn btn-success' %>
+            <% end %>
+         </div>
+      </div>
+   </div>
+</div>

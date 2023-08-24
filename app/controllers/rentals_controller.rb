@@ -1,5 +1,4 @@
 class RentalsController < ApplicationController
-
   def new
     @rental = Rental.new
   end
@@ -10,18 +9,18 @@ class RentalsController < ApplicationController
     @rental.user = current_user
     @rental.book = @book
 
-#     calculate_days
-
     if @rental.save
-      redirect_to @rental.user, notice: "You have successfully rented this book!"
+      redirect_to dashboards_path(current_user), notice: "You have successfully rented this book!"
     else
-      render 'books/show'
+      render :new, status: :unprocessable_entity
     end
   end
 
-#   def return ## need to be able to return the rented book
-
-    # calculate_days
+  def destroy
+    @rental = Rental.find(params[:id])
+    @rental.destroy
+    redirect_to dashboards_path(current_user), status: :see_other
+  end
 
   private
 
