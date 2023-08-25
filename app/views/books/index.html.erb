@@ -1,4 +1,5 @@
 <div class="cover">
+
   <div class="cover-heading p-5">
     <h1 class="rent">Rent</h1>
     <h1 class="book">Books</h1>
@@ -6,7 +7,7 @@
 </div>
 <hr>
 <div class="container py-5">
-  <div class="d-flex justify-content-between my-5">
+  <%= image_tag "logo-removebg.png", width:"200" %>  <div class="d-flex align-align-text-center justify-content-between mb-5">
     <h3
       class="mb-0"
       style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"
@@ -17,39 +18,41 @@
       type="button"
       class="btn btn-outline-success"
       data-toggle="modal"
-      data-target=".bd-example-modal-md"
-    >Add a New Book
+      data-target=".bd-example-modal-md">Add a New Book
     </button>
-  </div>
 
-  <div
-    class="modal fade bd-example-modal-md"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="myLargeModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-md">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="container py-5">
-            <div class="row">
-              <div class="bg-white rounded p-3 shadow">
-                <h4>Add a new book</h4>
-                <%= simple_form_for Book.new do |f| %>
-                  <%= f.input :title %>
-                  <%= f.input :year %>
-                  <%= f.input :author %>
-                  <%= f.input :overview %>
-                  <%= f.input :genre %>
-                  <%= f.submit class: "btn btn-success" %>
-                <% end %>
+    <div
+      class="modal fade bd-example-modal-md"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container py-5">
+              <div class="row">
+                <div class="bg-white rounded p-3 shadow">
+                  <h4>Add a new book</h4>
+                  <%= simple_form_for Book.new do |f| %>
+                    <%= f.input :title %>
+                    <%= f.input :year %>
+                    <%= f.input :author %>
+                    <%= f.input :overview %>
+                    <%= f.input :genre %>
+                    <%= f.submit class: "btn btn-success" %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- end of modal diallog -->
   </div>
   <!-- Cards to Show books -->
   <div class="container">
@@ -57,6 +60,7 @@
     <% @books.each_slice(3) do |book_row| %>
       <div class="row">
         <% book_row.each do |book| %>
+
           <div
             class="col-md-4"
             style="box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;"
@@ -75,11 +79,15 @@
         <% end %>
       </div>
     <% end %>
+
   </div>
   <!-- end of showing books -->
 </div>
-
 <!--Add New Book Modal -->
+
+
+</div>
+
 <footer>
   <div class="cover-heading">
     <div class="socials-box">
