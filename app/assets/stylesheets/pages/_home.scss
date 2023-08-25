@@ -37,18 +37,18 @@
 }
 
 .socials-box {
-background-size: cover;
-background-color: #131fa2;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
-color: white;
-width: 100%;
-height: 150px;
-
+  background-size: cover;
+  background-color: #131fa2;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+  color: white;
+  width: 100%;
+  height: 150px;
+}
 
 .row {
-  height: 150px;
+  // height: 150px;
   align-items: center;
-  }
+
   .my-font {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
     font-size: 20px;
@@ -58,12 +58,14 @@ height: 150px;
   p {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
     font-weight: 100;
-
-
-
   }
 
+  p {
+    font-family: 'Open Sans', sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
+  }
 }
+
 
 .card-img-top-small {
 //   max-width: 50%;
@@ -92,4 +94,3 @@ height: 150px;
   color: #696969;
 
 }
-

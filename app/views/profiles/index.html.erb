@@ -1,15 +1,35 @@
-<div class="container">
-  <h1>Profile</h1>
-
-  <div class="profile-container d-flex">
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "w-10 rounded", alt: "avatar" %>
-
-    <div class="details container w-40 mt-10">
-      <p><strong>First name: </strong><%= current_user.first_name %></p>
-      <p><strong>Last name: </strong><%= current_user.last_name %></p>
-      <p><strong>Email: </strong><%= current_user.email %></p>
-    </div>
-  </div>
-
-  <p><%= link_to "Edit profile", edit_user_registration_path %></p>
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+  <div class="card p-4">
+    <div class=" image d-flex flex-column justify-content-center align-items-center">
+        <%= cl_image_tag current_user.photo.key, width: 100 ,height: 100, class:"btn2 btn-secondary" %>
+      <span class="name mt-3">
+        <h2><%= current_user.first_name %></h2>
+      </span>
+      <span class="name mt-2">
+        <h2><%= current_user.last_name %></h2>
+      </span>
+      <span class="idd">
+        <p><%= current_user.email %></p>
+      </span>
+      <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+        <span class="idd1"></span>
+      </div>
+      <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+        <span class="number"> <span class="follow"></span></span> </div>
+ 
+      <div class=" d-flex mt-2" > 
+          <%= link_to edit_user_registration_path do %>
+          <button class="btn1 btn-dark">Edit Profile</button>
+          <%end%>
+      </div>
+ 
+      <div class="text mt-3"> <span><%= current_user.first_name %> <%= current_user.last_name %> loves to rent a variety of different books!<br>
+          <br>
+            </span> </div>
+ 
+      <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> <span><i class="fa fa-twitter"></i></span> <span><i class="fa fa-facebook-f"></i></span> <span><i class="fa fa-instagram"></i></span> <span><i class="fa fa-linkedin"></i></span> </div>
+ 
+      <div class=" px-2 rounded mt-4 date "> <span class="join"></span> </div>
+ </div>
+ </div>
 </div>

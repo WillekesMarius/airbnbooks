@@ -1,5 +1,5 @@
 <div class="container my-5">
-  <%= image_tag "#{rand(1..10)}.jpg", class: "book-image" %>
+  <%= image_tag @book.poster_image, class: "book-image" %>
 
   <div>
     <h1 class="book-start-one"><%= @book.title %></h1>
@@ -11,9 +11,9 @@
 
   <div class="formstyle">
     <%= simple_form_for [@book, @rental] do |f| %>
-      <%= f.input :start_date, label: "Start", placeholder: "From", wrapper_htlm: { class: "inline_field_wrapper"} %>
-      <%= f.input :end_date, label: "End", placeholder: "To", wrapper_htlm: { class: "inline_field_wrapper"} %>
-      <%= f.submit "Rent Me!", class: "text-decoration-none btn btn-outline-primary" , onclick: "Congratulations! Your rental was successful!"%>
+      <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker", 'datepicker-dates-value': @existing_rental_dates.to_json } } %>
+      <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker", 'datepicker-dates-value': @existing_rental_dates.to_json } } %>
+      <%= f.submit "Rent Me!", class: "text-decoration-none btn btn-outline-primary" , onclick: "Congratulations! Your rental was successful!" %>
     <% end %>
   </div>
 
