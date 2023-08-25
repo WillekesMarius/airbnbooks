@@ -15,7 +15,7 @@
     <% @books.each do |book| %>
       <div class="co-12 col-sm-6 col-md-4 mb-3 pt-3">
         <div class="card-category">
-          <%= image_tag "#{rand(1..10)}.jpg", class: "book-image" %>
+          <%= image_tag book.poster_image, class: "book-image" %>
           <br>
           <div class="pt-2">
             <%= link_to book.title, book_path(book), class: "text-decoration-none text-black" %>
@@ -30,7 +30,7 @@
   <div class="socials-box">
     <div class="container">
       <div class="row justify-content-center text-center py-4">
-        <h5>FOLLOW US</h5>
+        <h5>Follow Us</h5>
         <p class="mb-0">
           <span class="icons-facebook">
             <i class="mr-1 fab fa-facebook-f">Facebook</i>

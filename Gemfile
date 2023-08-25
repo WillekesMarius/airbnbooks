@@ -82,3 +82,4 @@ gem 'faker'
 gem "cloudinary"
 gem 'erb-formatter'
 gem 'htmlbeautifier'
+gem 'pg_search'
