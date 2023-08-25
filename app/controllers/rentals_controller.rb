@@ -5,18 +5,19 @@ class RentalsController < ApplicationController
 
   def create
     @book = Book.find(params[:book_id])
+    @rental = Rental.new(rental_params)
+    @rental.user = current_user
+    @rental.book = @book
+
     if @book.user == current_user
       redirect_to book_path(@book), notice: "You own this book!"
-    else
-      @rental = Rental.new(rental_params)
-      @rental.user = current_user
-      @rental.book = @book
+      return
+    end
 
-      if @rental.save
-        redirect_to dashboards_path(current_user), notice: "You have successfully rented this book!"
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @rental.save
+      redirect_to dashboards_path(current_user), notice: "You have successfully rented this book!"
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 

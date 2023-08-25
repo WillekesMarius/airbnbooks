@@ -14,6 +14,7 @@
         <%= text_field_tag :query,
               params[:query],
               class: "form-control",
+              style: "width:620px",
               placeholder: "Title, Author, Genre, Keyword"
           %>
         <%= button_tag class: "btn btn-success" do %>
@@ -41,7 +42,11 @@
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
+            <% else %>
+              <div class="dropdown menu" style="height:20px;width:20px;"></div>
+            <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", profiles_path, class: "dropdown-item" %>
