@@ -1,18 +1,24 @@
 class BooksController < ApplicationController
-  # before_action :authenticate_user!, only: %i[new create]
   before_action :set_book, only: %i[show edit update destroy]
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @books = Book.all
   end
 
-  def new
-    @book = Book.new
-  end
-
   def show
     @rental = Rental.new
+
+    @existing_rental_dates = @book.rentals.map do |rental|
+      {
+        from: rental.start_date,
+        to: rental.end_date
+      }
+    end
+  end
+
+  def new
+    @book = Book.new
   end
 
   def create
@@ -36,8 +42,12 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book.destroy
-    redirect_to dashboards_path(current_user), status: :see_other
+    if @book.user == current_user
+      @book.destroy
+      redirect_to dashboards_path(current_user), status: :see_other
+    else
+      redirect_to dashboards_path(current_user), notice: "You are not the owner of this book!"
+    end
   end
 
   private
