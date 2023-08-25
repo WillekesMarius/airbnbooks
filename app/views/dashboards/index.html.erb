@@ -1,34 +1,62 @@
-<div class="container">
-<h1>Dashboard</h1>
-
-  <div class="dashboard-container">
-    <div class="books-container">
-      <div class="d-flex align-align-text-center justify-content-between mb-5">
+  <div class="container">
+<br>
         <h3 class="mb-0">My books</h3>
-        <%= link_to "Add a new book", new_book_path(@book), class:"btn btn-outline-success" %>
-      </div>
+        <!-- <%= link_to "Add a new book", new_book_path(@book), class:"btn btn-outline-success" %> . -->
+<br>
+    <% current_user.books.each_slice(3) do |book_row| %>
+      <div class="row">
+        <% book_row.each do |book| %>
 
-      <div class="card-container w-80 d-flex flex-wrap">
-        <% current_user.books.each do |book| %>
-          <div class="co-12 col-sm-6 col-md-4 mb-3 pt-3">
-            <div class="card-category">
-              <%= image_tag "#{rand(1..10)}.jpg", class: "book-image" %>
-              <br>
-              <div class="pt-2">
-                <%= link_to book.title, book, class: "text-decoration-none text-black" %>
+          <div
+            class="col-md-4"
+            style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <div class="card mb-4">
+              <div class="card-header"><%= image_tag "#{rand(1..10)}.jpg", class: "card-img-top-small img-fluid" %></div>
+
+              <div class="card-body">
+
+                <h5 class="card-title"><%= book.title %></h5>
+                <p class="card-text"><%= book.author %></p>
+                 <i class="fa-regular fa-pen-to-square"></i>
+
+                <%= link_to "Edit Book", edit_book_path(book), class: "text-decoration-none btn btn-outline-success" %>
                 <br>
-                <%= book.author %>
-                <br>
-                <i class="fa-regular fa-pen-to-square"></i>
-                <%= link_to "Edit book", edit_book_path(book), class: "text-decoration-none btn btn-outline-primary" %>
-                <br>
+
                 <i class="fa-solid fa-trash"></i>
-                <%= link_to "Remove book", book_path(book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-decoration-none btn btn-outline-danger" %>
+
+                <%= link_to "Remove Book", book_path(book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-decoration-none btn btn-outline-success" %>
               </div>
             </div>
           </div>
         <% end %>
       </div>
+    <% end %>
+
+  </div>
+  <!-- end of showing my books -->
+
+  <!-- Cards to Show my Rentals -->
+
+  <div class="container">
+     <br/>
+
+        <h3 class="mb-0">My Rentals</h3>
+        <!-- <%= link_to "Add a new book", new_book_path(@book), class:"btn btn-outline-success" %> . -->
+     <br/>
+
+    <% current_user.rentals.each_slice(3) do |rental_row| %>
+      <div class="row">
+        <% rental_row.each do |rental| %>
+
+          <div
+            class="col-md-4"
+            style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <div class="card mb-4">
+              <div class="card-header"><%= image_tag "#{rand(1..10)}.jpg", class: "card-img-top-small img-fluid" %></div>
+
+              <div class="card-body">
+
+                <div class="pt-2">
     </div>
 
     <div class="rentals-container">
@@ -47,17 +75,32 @@
                 <br>
                 <%= rental.book.author %>
                 <br>
-                <%= rental.start_date %>
-                <br>
-                <%= rental.end_date %>
-                <br>
-                <i class="fa-solid fa-trash"></i>
-                <%= link_to "Return book", rental_path(rental), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-decoration-none btn btn-outline-danger" %>
+
+                <div class="button-spacing mt-3">
+                  <i class="fa-solid fa-trash"></i>
+                  <%= link_to "Return Book", rental_path(rental), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none btn btn-outline-success" %>
+                </div>
+              </div>
               </div>
             </div>
           </div>
         <% end %>
       </div>
+    <% end %>
+
+  </div>
+  <!-- end of showing my Rentals -->
+
+
+
+
+
+
+
+
+
+
+
     </div>
 
   </div>
