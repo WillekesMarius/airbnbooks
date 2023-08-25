@@ -1,18 +1,41 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+
+ <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "http://[::1]:3000/", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "airbnb-books-logo.png" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <div class="row justify-content-center">
+      <%= form_with url: root_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              style: "width:620px",
+              placeholder: "Title, Author, Genre, Keyword"
+          %>
+        <%= button_tag class: "btn btn-success" do %>
+          <i class='fas fa-search'></i>
+        <% end %>
+      <% end %>
+      <%# <div class="input-group">
+        <div class="form-outline">
+          <input id="search-input" type="search" class="form-control", placeholder= "Title, Author, Genre, Keyword">
+        </div>
+        <button id="search-button" type="button" class="btn btn-success" >
+          <i class="fas fa-search"></i>
+        </button>
+      </div> %>
+    </div>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "http://[::1]:3000/", class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Dashboard", dashboards_path, class: "nav-link" %>
@@ -31,6 +54,7 @@
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
+
         <% end %>
       </ul>
     </div>

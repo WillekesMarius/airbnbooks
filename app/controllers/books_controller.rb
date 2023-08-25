@@ -1,10 +1,18 @@
 class BooksController < ApplicationController
-  # skip_before_action :authenticate_user!
-  before_action :set_book, only: %i[show edit update destroy]
+  # before_action :authenticate_user!, only: %i[new create]
+  before_action :set_book, only: %i[show edit update destroy new]
   skip_before_action :authenticate_user!, only: :index
+
+  def initialize_book
+    @user = Book.new
+  end
 
   def index
     @books = Book.all
+    if params[:query].present?
+      sql_subquery = "title ILIKE :query OR author ILIKE :query OR overview ILIKE :query OR genre ILIKE :query"
+      @books = @books.where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def new
@@ -17,10 +25,11 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @book.user = current_user
     if @book.save
-      redirect_to @user, notice: "Your book was successfully created!"
+      redirect_to dashboards_path(current_user), notice: "Your book was successfully created!"
     else
-      render @user
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -28,7 +37,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to @book, notice: "Your book has been succesfully updated!"
+      redirect_to dashboards_path(current_user), notice: "Your book has been succesfully updated!"
     else
       render :edit
     end
@@ -36,20 +45,9 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to books_path, status: :see_other
+    redirect_to dashboards_path(current_user), status: :see_other
   end
 
-  def create
-    @book = Book.find(params[:user_id])
-    @book = @user.books.new(book_params)
-
-    if @book.save
-      redirect_to @user, notice: "Your book was successfully created!"
-    else
-      render @user
-    end
-  end
-  
   private
 
   def set_book

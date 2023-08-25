@@ -79,3 +79,5 @@ end
 
 gem 'devise'
 gem 'faker'
+gem 'pg_search'
+gem 'erb-formatter'

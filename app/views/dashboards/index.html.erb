@@ -1,17 +1,83 @@
-<div class="container">
-  <h1>Dashboard</h1>
+ <!-- Cards to Show my books -->
 
-  <h2>My Books</h2>
-    <div class="card-container w-80 col-9">
-      <% current_user.books.each do |book| %>
-        <div class="card col-3">
-          <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="book">
-          <h5><%= link_to book.title, book %></h5>
-        </div>
-      <% end %>
-    </div>
+  <div class="container">
+    <br>
+        <h3 class="mb-0">My books</h3>
+        <!-- <%= link_to "Add a new book", new_book_path(@book), class:"btn btn-outline-success" %> . -->
+        <br>
+    <% current_user.books.each_slice(3) do |book_row| %>
+      <div class="row">
+        <% book_row.each do |book| %>
 
-    <p><%= link_to "Add new book", new_book_path %></p>
+          <div
+            class="col-md-4"
+            style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <div class="card mb-4">
+              <div class="card-header"><%= image_tag "#{rand(1..10)}.jpg", class: "card-img-top-small img-fluid" %></div>
 
-  <h2>My Rentals</h2>
-</div>
+              <div class="card-body">
+
+                <h5 class="card-title"><%= book.title %></h5>
+                <p class="card-text"><%= book.author %></p>
+                 <i class="fa-regular fa-pen-to-square"></i>
+
+                <%= link_to "Edit Book", edit_book_path(book), class: "text-decoration-none btn btn-outline-success" %>
+                <br>
+                <div class="rem-button-spacing mt-3">
+                <i class="fa-solid fa-trash"></i>
+
+                <%= link_to "Remove Book", book_path(book), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-decoration-none btn btn-outline-success" %>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+  <!-- end of showing my books -->
+
+  <!-- Cards to Show my Rentals -->
+
+  <div class="container">
+     <br/>
+
+        <h3 class="mb-0">My Rentals</h3>
+        <!-- <%= link_to "Add a new book", new_book_path(@book), class:"btn btn-outline-success" %> . -->
+     <br/>
+
+    <% current_user.rentals.each_slice(3) do |rental_row| %>
+      <div class="row">
+        <% rental_row.each do |rental| %>
+
+          <div
+            class="col-md-4"
+            style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <div class="card mb-4">
+              <div class="card-header"><%= image_tag "#{rand(1..10)}.jpg", class: "card-img-top-small img-fluid" %></div>
+
+              <div class="card-body">
+
+                <div class="pt-2">
+                <%= link_to rental.book.title, rental.book, class: "text-decoration-none text-black" %>
+                <br>
+                <%= rental.book.author %>
+                <br>
+
+                <div class="button-spacing mt-3">
+                  <i class="fa-solid fa-trash"></i>
+                  <%= link_to "Return Book", rental_path(rental), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none btn btn-outline-success" %>
+                </div>
+              </div>
+
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+  <!-- end of showing my Rentals -->

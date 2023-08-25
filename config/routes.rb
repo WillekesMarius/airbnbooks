@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
 
   resources :dashboards, only: %i[index]
+  resources :rentals, only: %i[destroy]
   resources :profiles, only: %i[index]
 end
