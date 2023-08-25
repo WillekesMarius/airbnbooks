@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[show edit update destroy]
+  before_action :set_book, only: %i[show edit update destroy new]
   skip_before_action :authenticate_user!, only: %i[index show]
+
+  def initialize_book
+    @user = Book.new
+  end
 
   def index
     @books = Book.all
