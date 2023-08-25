@@ -18,7 +18,7 @@
           <%= image_tag "#{rand(1..10)}.jpg", class: "book-image" %>
           <br>
           <div class="pt-2">
-            <%= book.title %>
+            <%= link_to book.title, book_path(book), class: "text-decoration-none text-black" %>
             <br>
             <%= book.author %>
           </div>

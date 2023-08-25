@@ -79,3 +79,6 @@ end
 
 gem 'devise'
 gem 'faker'
+gem "cloudinary"
+gem 'erb-formatter'
+gem 'htmlbeautifier'
