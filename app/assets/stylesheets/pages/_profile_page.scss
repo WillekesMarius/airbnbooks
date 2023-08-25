@@ -8,7 +8,7 @@ body {
   background-color: #ffffff
 }
 
-.card {
+.card-profile {
   width: 350px;
   background-color: #efefef;
   border: none;
@@ -21,7 +21,7 @@ body {
   transition: all 0.5s
 }
 
-.card:hover .image img {
+.card-profile:hover .image img {
   transform: scale(1.2)
 }
 
@@ -33,7 +33,7 @@ body {
 .btn-secondary {
   background-color: #EFEFEF;
   border-color: #EFEFEF;
-  
+
 }
 
 .name {
