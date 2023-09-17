@@ -15,7 +15,6 @@ admin = User.create(
 
 puts "Created admin to login with: email #{admin.email}, password: 'password'}"
 
-
 10.times do
   user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: Faker::Internet.password)
   puts "Created #{user.first_name}"
@@ -96,7 +95,7 @@ book = Book.create!(
   year: 2007,
   genre: "Fantasy",
   overview: "Harry has been burdened with a dark, dangerous and seemingly impossible task: that of locating and destroying Voldemort's remaining Horcruxes. Never has Harry felt so alone, or faced a future so full of shadows. But Harry must somehow find within himself the strength to complete the task he has been given. He must leave the warmth, safety and companionship of The Burrow and follow without fear or hesitation the inexorable path laid out for him...",
-  user: User.all.sample
+  user_id: 1
 )
 puts "Created #{book.title}"
 
@@ -129,7 +128,7 @@ book = Book.create!(
   year: 1976,
   genre: "Science Fiction",
   overview: "The Children of Dune are twin siblings Leto and Ghanima Atreides, whose father, the Emperor Paul Muad'Dib, disappeared in the desert wastelands of Arrakis nine years ago. Like their father, the twins possess supernormal abilities--making them valuable to their manipulative aunt Alia, who rules the Empire in the name of House Atreides.",
-  user: User.all.sample
+  user_id: 1
 )
 puts "Created #{book.title}"
 
@@ -152,7 +151,7 @@ book = Book.create!(
   genre: "Fantasy",
   overview: "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.
   Written for J.R.R. Tolkien's own children, The Hobbit met with instant critical acclaim when it was first published in 1937.",
-  user: User.all.sample
+  user_id: 1
 )
 puts "Created #{book.title}"
 
