@@ -2,10 +2,10 @@
 AirBnBooks is a web application that enables users to share their passion for reading by lending and borrowing books within a vibrant and trusted community of book lovers.
 
 ## Table of Contents
-Video Demo
-Description
-Key Features
-Usage
+#### Video Demo
+#### Description
+#### Key Features
+#### Usage
 
 #### Video Demo:  "https://www.youtube.com/watch?v=2SXqn_N3nUU&ab_channel=Marius"
 
